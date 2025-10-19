@@ -25,7 +25,7 @@ models:
       - name: lifetime_spend
         description: 顧客が今までに行った全注文合計（税込み）の合計
       - name: customer_type
-        description: 'new'または'returning'のいずれか。顧客が複数回注文しているか、初回注文のみかを示す。
+        description: "'new'または'returning'のいずれか。顧客が複数回注文しているか、初回注文のみかを示す。"
         data_tests:
           - accepted_values:
               values: ["new", "returning"]
