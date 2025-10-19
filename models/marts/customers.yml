@@ -1,31 +1,31 @@
 models:
   - name: customers
-    description: Customer overview data mart, offering key details for each unique customer. One row per customer.
+    description: 顧客概要データマート。各ユニーク顧客の主要情報を提供。顧客ごとに1行。
     data_tests:
       - dbt_utils.expression_is_true:
           expression: "lifetime_spend_pretax + lifetime_tax_paid = lifetime_spend"
     columns:
       - name: customer_id
-        description: The unique key of the orders mart.
+        description: 顧客マートのユニークキー
         data_tests:
           - not_null
           - unique
       - name: customer_name
-        description: Customers' full name.
+        description: 顧客のフルネーム
       - name: count_lifetime_orders
-        description: Total number of orders a customer has ever placed.
+        description: 顧客が今までに注文した累計注文数
       - name: first_ordered_at
-        description: The timestamp when a customer placed their first order.
+        description: 顧客が初回注文を行ったタイムスタンプ
       - name: last_ordered_at
-        description: The timestamp of a customer's most recent order.
+        description: 顧客の最新注文のタイムスタンプ
       - name: lifetime_spend_pretax
-        description: The sum of all the pre-tax subtotals of every order a customer has placed.
+        description: 顧客が行った全注文の税抜き小計の合計
       - name: lifetime_tax_paid
-        description: The sum of all the tax portion of every order a customer has placed.
+        description: 顧客が行った全注文の税額部分の合計
       - name: lifetime_spend
-        description: The sum of all the order totals (including tax) that a customer has ever placed.
+        description: 顧客が今までに行った全注文合計（税込み）の合計
       - name: customer_type
-        description: Options are 'new' or 'returning', indicating if a customer has ordered more than once or has only placed their first order to date.
+        description: 'new'または'returning'のいずれか。顧客が複数回注文しているか、初回注文のみかを示す。
         data_tests:
           - accepted_values:
               values: ["new", "returning"]
@@ -35,7 +35,7 @@ semantic_models:
     defaults:
       agg_time_dimension: first_ordered_at
     description: |
-      Customer grain mart.
+      顧客粒度のマートテーブル。
     model: ref('customers')
     entities:
       - name: customer
@@ -56,35 +56,35 @@ semantic_models:
           time_granularity: day
     measures:
       - name: customers
-        description: Count of unique customers
+        description: ユニーク顧客数
         agg: count_distinct
         expr: customer_id
       - name: count_lifetime_orders
-        description: Total count of orders per customer.
+        description: 顧客あたりの累計注文数
         agg: sum
       - name: lifetime_spend_pretax
-        description: Customer lifetime spend before taxes.
+        description: 顧客の税抜き累計支払額
         agg: sum
       - name: lifetime_spend
         agg: sum
-        description: Gross customer lifetime spend inclusive of taxes.
+        description: 顧客の税込み累計支払額
 
 metrics:
   - name: lifetime_spend_pretax
-    description: Customer's lifetime spend before tax
-    label: LTV Pre-tax
+    description: 顧客の税抜き累計支払額
+    label: 税抜きLTV
     type: simple
     type_params:
       measure: lifetime_spend_pretax
   - name: count_lifetime_orders
-    description: Count of lifetime orders
-    label: Count Lifetime Orders
+    description: 累計注文数
+    label: 累計注文数
     type: simple
     type_params:
       measure: count_lifetime_orders
   - name: average_order_value
-    description: LTV pre-tax / number of orders
-    label: Average Order Value
+    description: 税抜きLTV / 注文数
+    label: 平均注文額
     type: derived
     type_params:
       metrics:

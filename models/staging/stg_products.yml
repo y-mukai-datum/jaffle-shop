@@ -1,9 +1,9 @@
 models:
   - name: stg_products
-    description: Product (food and drink items that can be ordered) data with basic cleaning and transformation applied, one row per product.
+    description: 基本的なクレンジングと変換を適用した商品（注文可能なフードとドリンクアイテム）データ。商品ごとに1行。
     columns:
       - name: product_id
-        description: The unique key for each product.
+        description: 各商品のユニークキー
         data_tests:
           - not_null
           - unique

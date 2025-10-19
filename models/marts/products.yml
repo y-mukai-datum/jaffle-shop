@@ -1,16 +1,16 @@
 semantic_models:
-  #The name of the semantic model.
+  #セマンティックモデルの名前
   - name: products
     description: |
-      Product dimension table. The grain of the table is one row per product.
-    #The name of the dbt model and schema
+      商品ディメンションテーブル。商品粒度で1商品1行のテーブル。
+    #dbtモデルとスキーマの名前
     model: ref('products')
-    #Entities. These usually corespond to keys in the table.
+    #エンティティ。通常はテーブルのキーに対応する。
     entities:
       - name: product
         type: primary
         expr: product_id
-    #Dimensions. Either categorical or time. These add additonal context to metrics. The typical querying pattern is Metric by Dimension.
+    #ディメンション。カテゴリカルまたは時間のいずれか。メトリクスに追加のコンテキストを加える。典型的なクエリパターンは「ディメンション別メトリクス」。
     dimensions:
       - name: product_name
         type: categorical

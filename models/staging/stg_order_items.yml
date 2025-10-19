@@ -1,14 +1,14 @@
 models:
   - name: stg_order_items
-    description: Individual food and drink items that make up our orders, one row per item.
+    description: 注文を構成する個別のフードとドリンクアイテム。アイテムごとに1行。
     columns:
       - name: order_item_id
-        description: The unique key for each order item.
+        description: 各注文アイテムのユニークキー
         data_tests:
           - not_null
           - unique
       - name: order_id
-        description: The corresponding order each order item belongs to
+        description: 各注文アイテムが属する対応する注文
         data_tests:
           - not_null
           - relationships:

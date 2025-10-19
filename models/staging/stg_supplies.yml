@@ -1,12 +1,12 @@
 models:
   - name: stg_supplies
     description: >
-      List of our supply expenses data with basic cleaning and transformation applied.
+      基本的なクレンジングと変換を適用した仕入れ費用データのリスト。
 
-      One row per supply cost, not per supply. As supply costs fluctuate they receive a new row with a new UUID. Thus there can be multiple rows per supply_id.
+      仕入れごとではなく、仕入れコストごとに1行。仕入れコストが変動すると新しいUUIDで新しい行が作成される。したがって、supply_idごとに複数行存在する可能性がある。
     columns:
       - name: supply_uuid
-        description: The unique key of our supplies per cost.
+        description: コストごとの仕入れのユニークキー
         data_tests:
           - not_null
           - unique

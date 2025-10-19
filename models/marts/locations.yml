@@ -1,7 +1,7 @@
 semantic_models:
   - name: locations
     description: |
-      Location dimension table. The grain of the table is one row per location.
+      店舗ディメンションテーブル。店舗粒度で1店舗1行のテーブル。
     model: ref('locations')
     defaults:
       agg_time_dimension: opened_date
@@ -19,6 +19,6 @@ semantic_models:
           time_granularity: day
     measures:
       - name: average_tax_rate
-        description: Average tax rate.
+        description: 平均税率
         expr: tax_rate
         agg: average

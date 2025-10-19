@@ -1,16 +1,16 @@
 semantic_models:
-  #The name of the semantic model.
+  #セマンティックモデルの名前
   - name: supplies
     description: |
-      Supplies dimension table. The grain of the table is one row per supply and product combination.
-    #The name of the dbt model and schema
+      仕入れディメンションテーブル。仕入れと商品の組み合わせ粒度で1行のテーブル。
+    #dbtモデルとスキーマの名前
     model: ref('supplies')
-    #Entities. These usually corespond to keys in the table.
+    #エンティティ。通常はテーブルのキーに対応する。
     entities:
       - name: supply
         type: primary
         expr: supply_uuid
-    #Dimensions. Either categorical or time. These add additonal context to metrics. The typical querying pattern is Metric by Dimension.
+    #ディメンション。カテゴリカルまたは時間のいずれか。メトリクスに追加のコンテキストを加える。典型的なクエリパターンは「ディメンション別メトリクス」。
     dimensions:
       - name: supply_id
         type: categorical

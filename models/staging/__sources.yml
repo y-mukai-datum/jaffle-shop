@@ -3,18 +3,18 @@ version: 2
 sources:
   - name: ecom
     schema: raw
-    description: E-commerce data for the Jaffle Shop
+    description: Jaffle ShopのEコマースデータ
     tables:
       - name: raw_customers
-        description: One record per person who has purchased one or more items
+        description: 1つ以上の商品を購入した人ごとに1レコード
       - name: raw_orders
-        description: One record per order (consisting of one or more order items)
+        description: 注文ごとに1レコード（1つ以上の注文アイテムで構成）
         loaded_at_field: ordered_at
       - name: raw_items
-        description: Items included in an order
+        description: 注文に含まれるアイテム
       - name: raw_stores
         loaded_at_field: opened_at
       - name: raw_products
-        description: One record per SKU for items sold in stores
+        description: 店舗で販売されるアイテムのSKUごとに1レコード
       - name: raw_supplies
-        description: One record per supply per SKU of items sold in stores
+        description: 店舗で販売されるアイテムのSKUごとの仕入れに対して1レコード

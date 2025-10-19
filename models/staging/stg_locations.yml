@@ -1,16 +1,16 @@
 models:
   - name: stg_locations
-    description: List of open locations with basic cleaning and transformation applied, one row per location.
+    description: 基本的なクレンジングと変換を適用した営業中の店舗リスト。店舗ごとに1行。
     columns:
       - name: location_id
-        description: The unique key for each location.
+        description: 各店舗のユニークキー
         data_tests:
           - not_null
           - unique
 
 unit_tests:
   - name: test_does_location_opened_at_trunc_to_date
-    description: "Check that opened_at timestamp is properly truncated to a date."
+    description: "opened_atタイムスタンプが日付に適切に切り捨てられていることを確認する。"
     model: stg_locations
     given:
       - input: source('ecom', 'raw_stores')
